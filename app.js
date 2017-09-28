@@ -5,6 +5,8 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config= require('./config/database');
+const router = express.Router();
+
 
 //db connection
 mongoose.connect(config.database);
@@ -35,12 +37,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //get details from form
 app.use(bodyparser.json());
-
-//passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
-
-//require('./config/passport')(passport);
 
 app.use('/users', Order);
 
